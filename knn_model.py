@@ -1,9 +1,7 @@
 from math_utils import hitung_jarak_euclidean
 
 def ambil_tetangga_terdekat(data_latih, baris_uji, k_tetangga):
-    """
-    Fungsi untuk mencari sejumlah K data latih yang memiliki jarak terdekat dengan data uji.
-    """
+    # Fungsi untuk mencari sejumlah K data latih yang memiliki jarak terdekat dengan data uji.
     koleksi_jarak = list()
     
     for baris_latih in data_latih:
@@ -24,9 +22,7 @@ def ambil_tetangga_terdekat(data_latih, baris_uji, k_tetangga):
     return daftar_tetangga
 
 def prediksi_kelas(data_latih, baris_uji, k_tetangga):
-    """
-    Fungsi untuk menentukan label kelas akhir menggunakan sistem Majority Voting.
-    """
+    # Fungsi untuk menentukan label kelas akhir menggunakan sistem Majority Voting.
     # Memanggil fungsi pencarian tetangga untuk mendapatkan K data terdekat
     tetangga_terdekat = ambil_tetangga_terdekat(data_latih, baris_uji, k_tetangga)
     
