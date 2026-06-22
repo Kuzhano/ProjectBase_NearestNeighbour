@@ -39,14 +39,29 @@ Since this project requires no external dependencies (like `numpy` or `pandas`),
    python main.py
 
 ## Evaluation & Results
-The algorithm performs a random shuffle and splits the dataset into an 80:20 ratio (Training and Testing). The K hyperparameter is set to **5** to prevent tie votes during classification. 
+The algorithm performs a random shuffle and splits the dataset into an 80:20 ratio. The K hyperparameter is set to 5 to prevent tie votes during classification.
 
-Based on the execution benchmark, the model achieves the following metrics:
-* **Total Training Data:** 417 rows
-* **Total Testing Data:** 105 rows
-* **Correct Predictions:** 85 instances
-* **Global Accuracy:** 80.95%
-* **Execution Time:** ~0.94 seconds
+To ensure a rigorous evaluation against class imbalance, the model is evaluated using a custom-built Confusion Matrix on the 105 testing instances:
+
+Confusion Matrix:
+* **True Positive (TP):** 9
+* **True Negative (TN):** 76
+* **False Positive (FP):** 8
+* **False Negative (FN):** 12
+
+Performance Metrics
+* **Accuracy:** 80.95%
+* **Precision:** 52.94%
+* **Recall (True Positive Rate):** 42.86%
+* **Specificity (True Negative Rate):** 90.48%
+* **F1-Measure:** 47.37%
+
+## Technical Insight
+While the Accuracy (80.95%) appears high, relying solely on this metric is misleading due to the inherent class imbalance in software defect data.
+* The high Specificity (90.48%) proves the model is highly reliable at identifying clean/safe code.
+* However, the relatively low Recall (42.86%) reveals an under-detection issue, where more than half of the actual defective modules (False Negatives) slip past the algorithm.
+
+This highlights the critical importance of utilizing comprehensive performance matrices over flat accuracy when dealing with real-world, imbalanced engineering data.
 
 ## Algorithmic Detail
 The core of this model relies on the **Euclidean Distance** formula to map the spatial similarity between the unclassified code metrics (test data) and historical code metrics (training data). 
